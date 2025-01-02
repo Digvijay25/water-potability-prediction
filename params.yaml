@@ -1,0 +1,10 @@
+data_collection: 
+    test_size: 0.20
+    random_state: 0
+
+model_building:
+    n_estimators: 100
+    random_state: 0
+    n_jobs: -1
+    max_depth: 15
+    
