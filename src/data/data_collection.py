@@ -14,9 +14,9 @@ def load_params(filepath: str) -> float:
         raise Exception(f"An error occurred when trying to load the parameters: {e}")
 
 # Load data
-def load_data(filepath: str) -> pd.DataFrame:
+def load_data(url: str) -> pd.DataFrame:
     try:
-        return pd.read_csv(filepath)
+        return pd.read_csv(url)
     except Exception as e:
         raise Exception(f"An error occurred when trying to load the data: {e}")
 
@@ -34,11 +34,12 @@ def save_data(df: pd.DataFrame, filepath: str) -> None:
         raise Exception(f"An error occurred when trying to save the data: {e}")
 
 def main():
-    data_filepath = 'water_potability.csv'
+
+    url = 'https://raw.githubusercontent.com/digvijay25/Datasets/main/water_potability.csv'
     params_filepath = 'params.yaml'
     save_filepath = os.path.join('data', 'raw')
     try:
-        df = load_data(data_filepath)
+        df = load_data(url)
         test_size = load_params(params_filepath)
         train, test = split_data(df, test_size)
 

@@ -54,9 +54,9 @@ def main():
     try:
         test_data = load_data('data/processed/test_processed.csv')
         X_test, y_test = prepare_data(test_data)
-        model = load_model('model.pkl')
+        model = load_model('models/model.pkl')
         metrics = evaluate_model(model, X_test, y_test)
-        save_metrics(metrics, 'metrics.json')
+        save_metrics(metrics, 'reports/metrics.json')
     except Exception as e:
         print(f"An error occured while evaluating the model: {e}")
 

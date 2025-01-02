@@ -43,7 +43,7 @@ def save_model(clf: RandomForestClassifier, model_path: str) -> None:
 def main():
     params_path = 'params.yaml'
     data_path = 'data/processed/train_processed.csv'
-    model_path = 'model.pkl'
+    model_path = 'models/model.pkl'
 
     try:
         n_estimators, max_depth = load_params(params_path)
