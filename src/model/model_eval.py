@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np 
 import json 
 import pickle 
-
+from dvclive import Live
+import yaml
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 
@@ -25,11 +26,28 @@ def load_model(filepath: str) -> any:
 
 def evaluate_model(model: any, X_test: pd.DataFrame, y_test: np.array) -> dict:
     try:
+
+        params = yaml.safe_load(open('params.yaml', 'r'))
+        test_size = params['data_collection']['test_size']
+        n_estimators = params['model_building']['n_estimators']
+        max_depth = params['model_building']['max_depth']
+
         y_pred = model.predict(X_test)
         acc = accuracy_score(y_test, y_pred)
         pre = precision_score(y_test, y_pred)
         recall = recall_score(y_test, y_pred)
         f1 = f1_score(y_test, y_pred)
+
+        with Live(save_dvc_exp = True) as live:
+            live.log("accuracy", acc)
+            live.log("precision", pre)
+            live.log("recall", recall)
+            live.log("f1-score", f1)
+
+            live.log("test_size", test_size)
+            live.log("n_estimators", n_estimators)  
+            live.log("max_depth", max_depth)
+
         metrics = {
             'accuracy': acc,
             'precision': pre,
