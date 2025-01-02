@@ -39,14 +39,14 @@ def evaluate_model(model: any, X_test: pd.DataFrame, y_test: np.array) -> dict:
         f1 = f1_score(y_test, y_pred)
 
         with Live(save_dvc_exp = True) as live:
-            live.log("accuracy", acc)
-            live.log("precision", pre)
-            live.log("recall", recall)
-            live.log("f1-score", f1)
+            live.log_metric("accuracy", acc)
+            live.log_metric("precision", pre)
+            live.log_metric("recall", recall)
+            live.log_metric("f1-score", f1)
 
-            live.log("test_size", test_size)
-            live.log("n_estimators", n_estimators)  
-            live.log("max_depth", max_depth)
+            live.log_metric("test_size", test_size)
+            live.log_metric("n_estimators", n_estimators)  
+            live.log_metric("max_depth", max_depth)
 
         metrics = {
             'accuracy': acc,
