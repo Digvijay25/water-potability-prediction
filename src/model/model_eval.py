@@ -5,7 +5,6 @@ import pickle
 
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
-test_data = pd.read_csv('data/processed/test_processed.csv')
 
 def load_data(filepath: str) -> pd.DataFrame:
     try:
@@ -52,7 +51,7 @@ def save_metrics(metrics: dict, filepath: str) -> None:
 
 def main():
     try:
-        test_data = load_data('data/processed/test_processed.csv')
+        test_data = load_data('data/processed/test_processed_mean.csv')
         X_test, y_test = prepare_data(test_data)
         model = load_model('models/model.pkl')
         metrics = evaluate_model(model, X_test, y_test)
