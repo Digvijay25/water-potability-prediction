@@ -1,4 +1,4 @@
-water-potability-prediction
+Water Potability Prediction
 ==============================
 
 Project Organization
