@@ -1,8 +1,6 @@
 water-potability-prediction
 ==============================
 
-Water Potability Prediction using ML
-
 Project Organization
 ------------
 
